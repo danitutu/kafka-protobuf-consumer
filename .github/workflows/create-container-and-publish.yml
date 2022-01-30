@@ -18,16 +18,16 @@ jobs:
       packages: write
 
     steps:
-      - uses: actions/checkout@v2
-      - name: Set up JDK 17
-        uses: actions/setup-java@v2
-        with:
-          java-version: '17'
-          distribution: 'temurin'
+#      - uses: actions/checkout@v2
+#      - name: Set up JDK 17
+#        uses: actions/setup-java@v2
+#        with:
+#          java-version: '17'
+#          distribution: 'temurin'
 
       - name: Set image name
 #        run: VAR=$(echo kafka-protobuf-consumer:${{ github.event.release.tag_name }} | sed 's/v//')
-        run: VAR=$(echo kafka-protobuf-consumer:v1.0.1 | sed 's/v//')
+        run: VAR=$(echo kafka-protobuf-consumer:v1.0.1 | sed 's/v//') && echo VAR1
 
       - name: Show value
         run: echo $VAR
