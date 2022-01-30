@@ -23,4 +23,7 @@ jobs:
           distribution: 'temurin'
 
       - name: Create container
-        run: mvn spring-boot:build-image -Dspring-boot.build-image.imageName=ghcr.io/danitutu/kafka-protobuf-consumer:latest
+        run: mvn spring-boot:build-image -Dspring-boot.build-image.imageName=ghcr.io/danitutu/kafka-protobuf-consumer:0.0.1
+
+      - name: Install Dependencies
+        run: docker push ghcr.io/danitutu/kafka-protobuf-consumer:0.0.1
