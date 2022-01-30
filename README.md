@@ -36,14 +36,18 @@ This should be correlated with a protobuf schema.
 
 ## Getting Started
 
-### Environment Variables
+The Kafka connectivity and the consumer can be configured using the parameters supported by Kafka and listed in the Kafka docs. They should be prefixed with `SPRING_KAFKA_`
 
-| Name                             | Sample Value       | Default     | Description                                                                                                          |
-|----------------------------------|--------------------|-------------|----------------------------------------------------------------------------------------------------------------------|
-| KAFKA_BOOTSTRAP_SERVERS          | localhost:29092    | N/A         | Kafka broker address                                                                                                 |
-| KAFKA_CONSUMER_GROUP_ID          | test-user-consumer | Random UUID | The consumer group ID. If not provided each instance will get a new UUID.                                            |
-| KAFKA_TOPIC_NAME                 | events.user        | N/A         | The topic from which messages will be consumed                                                                       |
-| KAFKA_CONSUMER_AUTO_OFFSET_RESET | earliest           | latest      | The way the consumer should consume messages when it joins Kafka. It should be one of: `latest`, `earliest`, `none`. |
+| Name                                    | Required | Sample Value       | Default     | Description                                                                                                          |
+|-----------------------------------------|----------|--------------------|-------------|----------------------------------------------------------------------------------------------------------------------|
+| SPRING_KAFKA_BOOTSTRAP_SERVERS          | Y        | localhost:29092    |             | Kafka broker address                                                                                                 |
+| SPRING_KAFKA_TOPIC_NAME                 | Y        | events.user        |             | The topic from which messages will be consumed                                                                       |
+| SPRING_KAFKA_CONSUMER_GROUP_ID          |          | test-user-consumer | Random UUID | The consumer group ID. If not provided each instance will get a new UUID.                                            |
+| SPRING_KAFKA_CONSUMER_AUTO_OFFSET_RESET |          | earliest           | latest      | The way the consumer should consume messages when it joins Kafka. It should be one of: `latest`, `earliest`, `none`. |
+
+### Kubernetes
+
+
 
 ## Development
 
