@@ -26,13 +26,10 @@ jobs:
 #          distribution: 'temurin'
 
       - name: Set image name
-#        run: VAR=$(echo kafka-protobuf-consumer:${{ github.event.release.tag_name }} | sed 's/v//')
-        run: VAR=$(echo kafka-protobuf-consumer:v1.0.1 | sed 's/v//') && echo $VAR
-        env:
-          IMAGE_NAME: $VAR
+        run: echo IMAGE_NAME=$(echo kafka-protobuf-consumer:v1.0.1 | sed 's/v//') >> $GITHUB_ENV
 
       - name: Show value
-        run: echo "$VAR $IMAGE_NAME"
+        run: echo "$IMAGE_NAME"
 
 #      - name: Create container
 #        run: mvn spring-boot:build-image -Dspring-boot.build-image.imageName=ghcr.io/danitutu/$IMAGE_NAME
