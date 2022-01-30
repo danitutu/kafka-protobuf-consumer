@@ -17,7 +17,7 @@ jobs:
     steps:
 
       - name: Docker login
-        run: echo ${{ secrets.GITHUB_TOKEN }} | docker login ghcr.io -u ${{ github.actor }}2 --password-stdin
+        run: echo ${{ secrets.GITHUB_TOKEN }} | docker login ghcr.io -u ${{ secrets.CI_DOCKER_USERNAME }} --password-stdin
 
       - uses: actions/checkout@v2
       - name: Set up JDK 17
