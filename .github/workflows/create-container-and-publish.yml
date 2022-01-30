@@ -4,9 +4,6 @@ on:
   release:
     types: [created]
 
-env:
-  IMAGE_NAME:
-
 jobs:
   build-docker-image:
 
