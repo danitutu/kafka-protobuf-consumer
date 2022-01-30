@@ -21,8 +21,6 @@ jobs:
         with:
           java-version: '17'
           distribution: 'temurin'
-#          server-id: github # Value of the distributionManagement/repository/id field of the pom.xml
-#          settings-path: ${{ github.workspace }} # location for the settings.xml file
 
       - name: Create container
-        run: mvn spring-boot:build-image
+        run: mvn spring-boot:build-image -Dspring-boot.build-image.imageName=ghcr.io/danitutu/kafka-protobuf-consumer:latest
