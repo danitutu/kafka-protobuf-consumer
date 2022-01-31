@@ -18,9 +18,6 @@ public class Listener {
 
     private static final Logger logger = LoggerFactory.getLogger(Listener.class);
 
-    @Autowired
-    private Environment environment;
-
     @KafkaListener(topics = "${KAFKA_TOPIC_NAME}", groupId = "${spring.kafka.consumer.group-id:#{T(java.util.UUID).randomUUID().toString()}}")
     public void listener(@Payload byte[] message, @Headers Map<String, Object> headers) {
         try {
