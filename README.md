@@ -52,15 +52,17 @@ Spring Boot, Kafka connectivity, consumer, logging and others can be configured.
 By default, the application will log to the standard output.
 
 The parameters listed in the following table might have default values coming from other sources. Consult the appropriate docs to find out the defaults. The Default column shows only the values that are sent by this project in case the parameter value was not provided. 
+
 <style>
 table:nth-of-type(1) {
     display:table;
     width:100%;
 }
-table:nth-of-type(1) th:nth-of-type(5) {
+table:nth-of-type(1) th:nth-of-type(4) {
     width:350px;
 }
 </style>
+
 | Name                                             | Required | Sample Value                         | Default     | Description                                                                                                                                                                                                                                                                 |
 |--------------------------------------------------|----------|--------------------------------------|-------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | SPRING_KAFKA_BOOTSTRAP_SERVERS                   | Yes      | localhost:29092                      |             | Kafka broker address                                                                                                                                                                                                                                                        |
