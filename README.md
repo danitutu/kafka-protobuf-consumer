@@ -58,6 +58,9 @@ table:nth-of-type(1) {
     display:table;
     width:100%;
 }
+table:nth-of-type(1) th:nth-of-type(1) {
+    width:100px;
+}
 table:nth-of-type(1) th:nth-of-type(4) {
     width:350px;
 }
