@@ -49,14 +49,14 @@ Spring Boot, Kafka connectivity, consumer, logging and others can be configured.
 
 &#x26A0; Always make sure that the data you log from the topics does not contain sensitive data (ex.: any data that can be used to identify a real person, usernames, passwords, emails, phone numbers, etc.). Beware of the deployment environment and infrastructure as there might be side effects that happen without your knowledge (like automatically taking the application standard output and logging it in another system).
 
-By default, the application will log to the standard output.
+By default, the application logs to the standard output.
 
 For the listed parameters possible values and default values please consult the appropriate docs.
 
 - https://docs.spring.io/spring-boot/docs/current/reference/htmlsingle/#application-properties
 - https://kafka.apache.org/documentation/
 
-The Default column shows only the values that are set by this application in case the parameter value was not provided.
+The Default column shows only the values that are set by this application in case the parameter value was not provided. It doesn't refer to the values set by the other tools.
 
 | Name                                             | Required | Sample Value                         | Default     | Description                                                                                                                                                                                                          |
 |--------------------------------------------------|----------|--------------------------------------|-------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
@@ -67,7 +67,7 @@ The Default column shows only the values that are set by this application in cas
 
 ### Log to file
 
-When launching the application, pass `logging.file.name=/home/<user>/kafka/logs/kafka-messages.log`. After setting this, the app will log to the standard output and the file. If you want to disable the standard output logging and keep only the file logging, then set `logging.pattern.console=`.
+Set `logging.file.name=/home/<user>/kafka/logs/kafka-messages.log`. After this, the app will log to both the standard output and the file. If you want to disable the standard output logging and keep only the file logging, then set `logging.pattern.console=`.
 
 ### Kubernetes pod deployment
 
