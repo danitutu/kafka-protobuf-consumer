@@ -47,14 +47,16 @@ In addition to the LICENSE file and for additional clarification, by using this 
 
 Spring Boot, Kafka connectivity, consumer, logging and others can be configured. See https://docs.spring.io/spring-boot/docs/current/reference/htmlsingle/#application-properties for a list of configurations.
 
+&#x26A0; Always make sure that the data you log from the topics does not contain sensitive data (ex.: any data that can be used to identify a real person, usernames, passwords, emails, phone numbers, etc.). Beware of the deployment environment and infrastructure as there might be side effects that happen without your knowledge (like automatically taking the application standard output and logging it in another system).
+
 By default, the application will log to the standard output.
 
-| Name                                    | Required | Sample Value                         | Default     | Description                                                                                                          |
-|-----------------------------------------|----------|--------------------------------------|-------------|----------------------------------------------------------------------------------------------------------------------|
-| SPRING_KAFKA_BOOTSTRAP_SERVERS          | Y        | localhost:29092                      |             | Kafka broker address                                                                                                 |
-| SPRING_KAFKA_TOPIC_NAME                 | Y        | events.user                          |             | The topic from which messages will be consumed                                                                       |
-| SPRING_KAFKA_CONSUMER_GROUP_ID          |          | bf2f1933-de86-44c6-b654-ac57d20bf003 | Random UUID | The consumer group ID. If not provided each instance will get a new UUID.                                            |
-| SPRING_KAFKA_CONSUMER_AUTO_OFFSET_RESET |          | earliest                             | latest      | The way the consumer should consume messages when it joins Kafka. It should be one of: `latest`, `earliest`, `none`. |
+| Name                                    | Required | Sample Value                         | Default     | Description                                                                                                                                                                                                                                                                          |
+|-----------------------------------------|----------|--------------------------------------|-------------|--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| SPRING_KAFKA_BOOTSTRAP_SERVERS          | Yes      | localhost:29092                      |             | Kafka broker address                                                                                                                                                                                                                                                                 |
+| SPRING_KAFKA_TOPIC_NAME                 | Yes      | events.user                          |             | The topic from which messages will be consumed                                                                                                                                                                                                                                       |
+| SPRING_KAFKA_CONSUMER_GROUP_ID          |          | bf2f1933-de86-44c6-b654-ac57d20bf003 | Random UUID | &#x26A0; The consumer group ID. Never set this value to an existing consumer group ID. Doing that will cause the messages to be consumed by the test consumer which might end up with data loss. If not provided the test consumer will get a new UUID.                              |
+| SPRING_KAFKA_CONSUMER_AUTO_OFFSET_RESET |          | earliest                             | latest      | &#x26A0; The way the consumer should consume messages when it joins Kafka. Check Kafka docs for possible values and default values. Depending on the value that is set and on other Kafka parameters, this might consume a high amount of messages and produce huge amounts of logs. |
 
 ### Log to file
 
