@@ -6,7 +6,9 @@ This project is only meant for testing purposes and should not be used in produc
 
 Be aware that if your Kafka messages contain sensitive data then the sensitive data will be logged.
 
-The container doesn't require a schema.
+The container doesn't require a protobuf schema.
+
+&#x26A0;&#x26A0;&#x26A0; **!!! Make sure you understand the configuration you pass to the application. Misconfiguration might cause irreparable harm or irreparable damage. See LICENSE file and the Agreement section.** 
 
 A logged message sample:
 
@@ -34,18 +36,40 @@ A logged message sample:
 
 This should be correlated with a protobuf schema.
 
+## Agreement
+
+In addition to the LICENSE file and for additional clarification, by using this tool, you, the user of the tool, understand and agree with LICENSE and with the following:
+1. Misconfiguration of the tool might cause irreparable harm or irreparable damage.
+2. You are responsible for the way you use the tool and for any potential harm or damage that might appear as a consequence of using this tool.
+3. Authors and contributors cannot be held responsible, in any way, for any type of damage or harm, including and without limiting to data loss, data leaks, data privacy, that was caused by the usage of this tool.
+
 ## Getting Started
 
-The Kafka connectivity and the consumer can be configured using the parameters supported by Kafka and listed in the Kafka docs. They should be prefixed with `SPRING_KAFKA_`
+Spring Boot, Kafka connectivity, consumer, logging and others can be configured.
 
-| Name                                    | Required | Sample Value       | Default     | Description                                                                                                          |
-|-----------------------------------------|----------|--------------------|-------------|----------------------------------------------------------------------------------------------------------------------|
-| SPRING_KAFKA_BOOTSTRAP_SERVERS          | Y        | localhost:29092    |             | Kafka broker address                                                                                                 |
-| SPRING_KAFKA_TOPIC_NAME                 | Y        | events.user        |             | The topic from which messages will be consumed                                                                       |
-| SPRING_KAFKA_CONSUMER_GROUP_ID          |          | test-user-consumer | Random UUID | The consumer group ID. If not provided each instance will get a new UUID.                                            |
-| SPRING_KAFKA_CONSUMER_AUTO_OFFSET_RESET |          | earliest           | latest      | The way the consumer should consume messages when it joins Kafka. It should be one of: `latest`, `earliest`, `none`. |
+&#x26A0; Always make sure that the data you log from the topics does not contain sensitive data (ex.: any data that can be used to identify a real person, usernames, passwords, emails, phone numbers, etc.). Beware of the deployment environment and infrastructure as there might be side effects that happen without your knowledge (like automatically taking the application standard output and logging it in another system).
 
-### Kubernetes
+By default, the application logs to the standard output.
+
+For the listed parameters possible values and default values please consult the appropriate docs.
+
+- https://docs.spring.io/spring-boot/docs/current/reference/htmlsingle/#application-properties
+- https://kafka.apache.org/documentation/
+
+The Default column shows only the values that are set by this application in case the parameter value was not provided. It doesn't refer to the values set by the other tools.
+
+| Name                                             | Required | Sample Value                         | Default     | Description                                                                                                                                                                                                          |
+|--------------------------------------------------|----------|--------------------------------------|-------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| SPRING_KAFKA_BOOTSTRAP_SERVERS                   | Yes      | localhost:29092                      |             | Kafka broker address                                                                                                                                                                                                 |
+| SPRING_KAFKA_TOPIC_NAME                          | Yes      | events.user                          |             | The topic from which messages will be consumed                                                                                                                                                                       |
+| SPRING_KAFKA_CONSUMER_GROUP_ID &#x26A0;          |          | bf2f1933-de86-44c6-b654-ac57d20bf003 | Random UUID | The consumer group ID. Never set this value to an existing consumer group ID. Doing that will cause the messages to be consumed by the test consumer which might end up with data loss.                              |
+| SPRING_KAFKA_CONSUMER_AUTO_OFFSET_RESET &#x26A0; |          | latest                               |             | The way the consumer starts consuming messages when it joins Kafka. Depending on the value that is set and on other Kafka parameters, this might consume a high amount of messages and produce huge amounts of logs. |
+
+### Log to file
+
+Set `logging.file.name=/home/<user>/kafka/logs/kafka-messages.log`. After this, the app will log to both the standard output and the file. If you want to disable the standard output logging and keep only the file logging, then set `logging.pattern.console=`.
+
+### Kubernetes pod deployment
 
 
 
