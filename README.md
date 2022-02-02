@@ -38,7 +38,7 @@ This should be correlated with a protobuf schema.
 
 ## Agreement
 
-In addition to the LICENSE file and for additional clarification, by using this tool, you, the user of the tool, understand and agree with LICENSE and with the following:
+In addition to the LICENSE file, by using this tool, you, the user of the tool, understand and agree with LICENSE and with the following:
 1. Misconfiguration of the tool might cause irreparable harm or irreparable damage.
 2. You are responsible for the way you use the tool and for any potential harm or damage that might appear as a consequence of using this tool.
 3. Authors and contributors cannot be held responsible, in any way, for any type of damage or harm, including and without limiting to data loss, data leaks, data privacy, that was caused by the usage of this tool.
