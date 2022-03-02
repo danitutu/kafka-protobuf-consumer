@@ -51,6 +51,19 @@ Spring Boot, Kafka connectivity, consumer, logging and others can be configured.
 
 By default, the application logs to the standard output.
 
+Usage with docker-compose:
+
+```yaml
+kafka-protobuf-consumer:
+  image: ghcr.io/danitutu/kafka-protobuf-consumer:1.0.1
+  environment:
+    - SPRING_KAFKA_BOOTSTRAP_SERVERS=kafka:9093
+    - KAFKA_TOPIC_NAME=<topic-name>
+    - SPRING_KAFKA_CONSUMER_AUTO_OFFSET_RESET=latest
+  depends_on:
+    - kafka
+```
+
 For the listed parameters possible values and default values please consult the appropriate docs.
 
 - https://docs.spring.io/spring-boot/docs/current/reference/htmlsingle/#application-properties
